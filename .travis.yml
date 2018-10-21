@@ -4,5 +4,7 @@ language: generic
 services:
   - docker
 
+install: true
+
 script:
   - docker build --rm -f "Dockerfile" -t exercism-cpp-hello-world:test-1 .
