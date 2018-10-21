@@ -11,6 +11,8 @@ install:
   - sudo apt-get install -y software-properties-common
   - sudo apt-get install -qq g++-6
   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
+  - cmake --version
+  - sudo apt remove cmake
   - sudo apt-get install -y cmake
   - sudo apt-get install -y libboost-all-dev
 
