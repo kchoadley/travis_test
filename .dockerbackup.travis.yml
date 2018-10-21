@@ -1,9 +1,6 @@
-sudo: required
 # we don't build in Travis, we build in Docker, so no language support is needed 
 language: generic
 
-services:
-  - docker
+services: docker
 
-script:
-  - docker build --rm -f "Dockerfile" -t exercism-cpp-hello-world:test-1 .
+script: docker build --rm -f "Dockerfile" -t exercism-cpp-hello-world:test-1 .
