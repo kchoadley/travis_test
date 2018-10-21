@@ -1,4 +1,4 @@
-sudo: required
+# we don't build in Travis, we build in Docker, so no language support is needed 
 language: generic
 
 services:
