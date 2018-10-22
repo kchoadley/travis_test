@@ -14,4 +14,5 @@ RUN mkdir build
 WORKDIR "/usr/src/${DIR}/build"
 
 RUN cmake -G "Unix Makefiles" ..
-RUN make ./runTests
+RUN make
+RUN ./runTests
