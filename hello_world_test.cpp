@@ -4,7 +4,7 @@
 TEST(HelloWorldTest, SaysHelloWorld)
 {
     ASSERT_EQ(42, 42);
-    //EXPECT_EQ(std::string("Hello, World!", hello_world::hello());
+    EXPECT_EQ("Hello, World!", hello_world::hello());
 }
 
 int main(int argc, char **argv) {
