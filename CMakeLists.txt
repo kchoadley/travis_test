@@ -1,3 +1,5 @@
+# borrowed from tutorial at https://www.eriksmistad.no/getting-started-with-google-test-on-ubuntu/
+
 # Get the exercise name from the current directory
 get_filename_component(exercise ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 
@@ -7,20 +9,13 @@ cmake_minimum_required(VERSION 2.8.11)
 # Name the project after the exercise
 project(${exercise} CXX)
 
-# Locate Boost libraries: unit_test_framework, date_time and regex
-set(Boost_USE_STATIC_LIBS ON)
-set(Boost_USE_MULTITHREADED ON)
-set(Boost_USE_STATIC_RUNTIME OFF)
-find_package(Boost 1.59 REQUIRED COMPONENTS unit_test_framework date_time regex)
+# Locate GTest
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
 
 # Enable C++11 features on gcc/clang
 if("${CMAKE_CXX_COMPILER_ID}" MATCHES "(GNU|Clang)")
     set(CMAKE_CXX_FLAGS "-std=c++11")
-endif()
-
-# Configure to run all the tests?
-if(${EXERCISM_RUN_ALL_TESTS})
-    add_definitions(-DEXERCISM_RUN_ALL_TESTS)
 endif()
 
 # Get a source filename from the exercise name by replacing -'s with _'s
@@ -36,11 +31,9 @@ endif()
 # Build executable from sources and headers
 add_executable(${exercise} ${file}_test.cpp ${exercise_cpp} ${file}.h)
 
-# We need boost includes
-target_include_directories(${exercise} PRIVATE ${Boost_INCLUDE_DIRS})
-
-# We need boost libraries
-target_link_libraries(${exercise} ${Boost_LIBRARIES})
+# Link runTests with what we want to test and the GTest and pthread library
+add_executable(runTests hello_world_test.cpp)
+target_link_libraries(runTests ${GTEST_LIBRARIES} pthread)
 
 # Tell MSVC not to warn us about unchecked iterators in debug builds
 if(${MSVC})

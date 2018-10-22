@@ -58,5 +58,5 @@ It's possible to submit an incomplete solution so you can see how others have co
 Be sure to update the "DIR" arg on line 5 of the Dockerfile to be the same as the example name. In this case, it is `hello-world`.
 
 ```
-docker build --rm -f "Dockerfile" -t exercism-cpp-hello-world:test-1 .
+docker build --rm -f "Dockerfile" -t cpp-hello-world:test-1 .
 ```
