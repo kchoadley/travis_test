@@ -3,33 +3,28 @@
 # Get the base Ubuntu image from Docker Hub
 FROM ubuntu:18.04
 
-# Update apps on the base image
-RUN apt-get update
-
-RUN apt-get install -y software-properties-common
-
-# add ubuntu toolchain repository and g++
+# add ubuntu toolchain repository
+RUN apt-get -qq -d update
+RUN apt-get install -qq -y software-properties-common
 RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test
 RUN apt-get -qq -d update
 
-# GCC
-RUN apt-get -qq -y install g++-6
+# install tools
+RUN apt-get -qq -y install \
+        cmake \
+        g++-6 \
+        software-properties-common
 
 # make g++ 6 the default g++ executable
 RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
 
-# CMake
-RUN apt-get install -y cmake
-
-# gtest libraries and compile them
-RUN apt-get install libgtest-dev -y -qq
-
-RUN cd /usr/src/gtest \
-    cmake CMakeLists.txt \
-    make \
-    cp *.a /usr/lib
-
-# clean
-RUN  apt-get clean
+# gtest libraries, compile, move to lib folder, cleanup
+RUN apt-get install libgtest-dev -y -qq &&\
+    cd /usr/src/gtest &&\
+    cmake CMakeLists.txt &&\
+    make &&\
+    cp *.a /usr/lib &&\
+    cd .. &&\
+    rm -R gtest
 
 ### concludes base image

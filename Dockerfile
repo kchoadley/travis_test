@@ -1,5 +1,5 @@
 # Get the base Ubuntu image from Docker Hub
-FROM kchoadley/cpp-test-env:gtest2
+FROM kchoadley/cpp-test-env:latest
 
 # Set the folder name to be the same as the lesson name
 ARG DIR=hello-world
