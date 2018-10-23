@@ -29,7 +29,8 @@ RUN mkdir gfruit &&\
         tar -xvzf v3.4.0.tar.gz &&\
         cd fruit-3.4.0 &&\
         cmake -DCMAKE_BUILD_TYPE=Release -DFRUIT_USES_BOOST=False . && make -j &&\
-        make install
+        make install &&\
+        ldconfig
 
 # gtest libraries, compile, move to lib folder, cleanup
 RUN apt-get install libgtest-dev -y -qq &&\

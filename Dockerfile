@@ -13,8 +13,6 @@ WORKDIR "/usr/src/${DIR}"
 # You have to set an explicit error code, otherwise it goes undetected and you have to check the logs to see if there is an issue
 RUN cppcheck --error-exitcode=1 .
 
-RUN ldconfig
-
 RUN mkdir build
 WORKDIR "/usr/src/${DIR}/build"
 
