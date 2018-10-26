@@ -21,7 +21,8 @@ apt-get -q -y install \
 update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
 
 # Google Fruit dependency injection, build install remove old files
-mkdir gfruit &&\
+cd /usr/src &&\
+    mkdir gfruit &&\
     cd gfruit &&\
     wget https://github.com/google/fruit/archive/v3.4.0.tar.gz &&\
     tar -xvzf v3.4.0.tar.gz &&\
@@ -31,7 +32,8 @@ mkdir gfruit &&\
     ldconfig
 
 # Get gtest libraries, compile, move to lib folder, cleanup
-apt-get install libgtest-dev -y -q &&\
+cd /usr/src &&\
+    apt-get install libgtest-dev -y -q &&\
     cd /usr/src/gtest &&\
     cmake CMakeLists.txt &&\
     make &&\
