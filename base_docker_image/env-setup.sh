@@ -2,13 +2,13 @@
 ### Build and Test Environment on Ubuntu 18.04 for CADG
 
 # Add ubuntu toolchain repository
-apt-get -qq -d update
-apt-get install -qq -y software-properties-common
+apt-get -q -d update
+apt-get install -q -y software-properties-common
 add-apt-repository -y ppa:ubuntu-toolchain-r/test
-apt-get -qq -d update
+apt-get -q -d update
 
 # Install tools
-apt-get -qq -y install \
+apt-get -q -y install \
     cmake \
     cppcheck \
     g++-6 \
@@ -31,7 +31,7 @@ mkdir gfruit &&\
     ldconfig
 
 # Get gtest libraries, compile, move to lib folder, cleanup
-apt-get install libgtest-dev -y -qq &&\
+apt-get install libgtest-dev -y -q &&\
     cd /usr/src/gtest &&\
     cmake CMakeLists.txt &&\
     make &&\
@@ -40,7 +40,7 @@ apt-get install libgtest-dev -y -qq &&\
     rm -R gtest
 
 # Download cpplint.py and set the file permissions so that it is executable
-cd ~/usr/src &&\
+cd /usr/src &&\
     mkdir cadg &&\
     cd cadg &&\
     wget https://raw.githubusercontent.com/google/styleguide/gh-pages/cpplint/cpplint.py &&\
